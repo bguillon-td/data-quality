@@ -101,7 +101,8 @@ public class UserDefinedClassifier extends AbstractSubCategoryClassifier {
     }
 
     /**
-     * if there are children, we valid a COMPOUND category, so we have to valid the string with the children categories list
+     * if there are children, we valid a COMPOUND category, so we have to valid the string with the children categories
+     * list
      * 
      * @param str, the string to valid
      * @param mainCategory
@@ -145,8 +146,8 @@ public class UserDefinedClassifier extends AbstractSubCategoryClassifier {
      * <p/>
      * Validate this input data to adapt which customized rules.
      * <p/>
-     * Actually, the main category can be calculated based on the input string, but this method has better performance in case the
-     * mainCategory is already calculated previously.
+     * Actually, the main category can be calculated based on the input string, but this method has better performance
+     * in case the mainCategory is already calculated previously.
      *
      * @param str is input data
      * @param mainCategory: the MainCategory is computed by the input data
@@ -170,10 +171,10 @@ public class UserDefinedClassifier extends AbstractSubCategoryClassifier {
         // if the MainCategory is different, ignor it and continue;AlphaNumeric rule should contain pure Alpha and
         // Numeric.
         if (mainCategory == MainCategory.Alpha || mainCategory == MainCategory.Numeric) {
-            if (classifierCategory != mainCategory && classifierCategory != MainCategory.AlphaNumeric) {
+            if (!classifierCategory.equals(mainCategory) && !classifierCategory.equals(MainCategory.AlphaNumeric)) {
                 return false;
             }
-        } else if (classifierCategory != mainCategory) {
+        } else if (!classifierCategory.equals(mainCategory)) {
             return false;
         }
         if (invalidFilter(str, classifier.getFilter())) {

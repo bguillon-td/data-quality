@@ -30,7 +30,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.talend.dataquality.semantic.classifier.ISubCategory;
@@ -513,16 +512,16 @@ public class UserDefinedClassifierTest {
     public void testGetPatternStringByCategoryId() {
         UserDefinedClassifier userDefinedClassifier = new UserDefinedClassifier();
         String patternString = userDefinedClassifier.getPatternStringByCategoryId("583edc44ec06957a34fa643c"); //$NON-NLS-1$
-        Assert.assertEquals("The string of pattern is not we want", "^(F-|FRA?(-| ))?(0[1-9]|[1-9][0-9])[0-9]{3}$", //$NON-NLS-1$//$NON-NLS-2$
+        assertEquals("The string of pattern is not we want", "^(F-|FRA?(-| ))?(0[1-9]|[1-9][0-9])[0-9]{3}$", //$NON-NLS-1$//$NON-NLS-2$
                 patternString);
         // CategoryId is not exist case
         userDefinedClassifier = new UserDefinedClassifier();
         patternString = userDefinedClassifier.getPatternStringByCategoryId("aaaaaaaaaaaaaaa"); //$NON-NLS-1$
-        Assert.assertNull("patternString should be null", patternString); //$NON-NLS-1$
+        assertNull("patternString should be null", patternString); //$NON-NLS-1$
 
         // CategoryId is null case
         userDefinedClassifier = new UserDefinedClassifier();
         patternString = userDefinedClassifier.getPatternStringByCategoryId(null);
-        Assert.assertNull("patternString should be null", patternString); //$NON-NLS-1$
+        assertNull("patternString should be null", patternString); //$NON-NLS-1$
     }
 }
