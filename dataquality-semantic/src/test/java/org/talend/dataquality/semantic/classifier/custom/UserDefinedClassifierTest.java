@@ -280,7 +280,7 @@ public class UserDefinedClassifierTest {
             put("15:53", new String[] {}); //$NON-NLS-1$ 
             put("23:59", new String[] {}); //$NON-NLS-1$ 
 
-            put("Monday", new String[] { "583edc44ec06957a34fa643a" }); //$NON-NLS-1$ //$NON-NLS-2$ //<$NON-NLS-2$
+            put("Monday", new String[] { "583edc44ec06957a34fa643a" }); //$NON-NLS-1$ //$NON-NLS-2$
             put("MonDay", new String[] { "583edc44ec06957a34fa643a" }); //$NON-NLS-1$ //$NON-NLS-2$
             put("MOnDay", new String[] { "583edc44ec06957a34fa643a" }); //$NON-NLS-1$ //$NON-NLS-2$
             put("MOn", new String[] { "583edc44ec06957a34fa643a" }); //$NON-NLS-1$ //$NON-NLS-2$

@@ -69,6 +69,7 @@ public class ValueDataMaskerTest extends CategoryRegistryManagerAbstract {
             put(new String[] { "\t", MaskableCategoryEnum.EMAIL.name(), "string" }, "\t");
 
             // 4. PHONE
+            put(new String[] { "630466000", MaskableCategoryEnum.US_PHONE.name(), "string" }, "251516550");
             put(new String[] { "3333456789", MaskableCategoryEnum.US_PHONE.name(), "string" }, "3333818829");
             // if we put two 1 at the fifth and sixth position, it's not a US valid number, so we replace all the digit
             put(new String[] { "3333116789", MaskableCategoryEnum.US_PHONE.name(), "string" }, "2515165500");
@@ -91,6 +92,7 @@ public class ValueDataMaskerTest extends CategoryRegistryManagerAbstract {
             // 7 POSTAL_CODE
             // use regex function
             put(new String[] { "37218-1324", SemanticCategoryEnum.US_POSTAL_CODE.name(), "string" }, "82660");
+            put(new String[] { "37218-1324", SemanticCategoryEnum.US_POSTAL_CODE.name(), "string", "1111" }, "74201-1254");
             // use regex function
             put(new String[] { "92150", SemanticCategoryEnum.FR_POSTAL_CODE.name(), "string" }, "82660");
             put(new String[] { "63274", SemanticCategoryEnum.DE_POSTAL_CODE.name(), "string" }, "32515");
@@ -347,10 +349,18 @@ public class ValueDataMaskerTest extends CategoryRegistryManagerAbstract {
             String inputValue = input[0];
             String semanticCategory = input[1];
             String dataType = input[2];
+            String specialRANDOM = null;
+            if (input.length > 3) {
+                specialRANDOM = input[3];
+
+            }
 
             System.out.print("[" + semanticCategory + "]\n\t" + inputValue + " => ");
             final ValueDataMasker masker = new ValueDataMasker(semanticCategory, dataType);
             masker.getFunction().setRandom(new Random(AllSemanticTests.RANDOM_SEED));
+            if (specialRANDOM != null) {
+                masker.getFunction().setRandom(new Random(Long.parseLong(input[3])));
+            }
             masker.getFunction().setKeepEmpty(true);
             String maskedValue = masker.maskValue(inputValue);
             // System.out.println(maskedValue + " expect is [" + EXPECTED_MASKED_VALUES.get(input) + "] result is "
@@ -387,7 +397,8 @@ public class ValueDataMaskerTest extends CategoryRegistryManagerAbstract {
         CustomDictionaryHolder holder = instance.getCustomDictionaryHolder(mockedTenantID);
 
         DQCategory answerCategory = holder.getMetadata().get(SemanticCategoryEnum.ANSWER.getTechnicalId());
-        DQCategory categoryClone = SerializationUtils.clone(answerCategory); // make a clone instead of modifying the shared
+        DQCategory categoryClone = SerializationUtils.clone(answerCategory); // make a clone instead of modifying the
+                                                                             // shared
                                                                              // category metadata
         categoryClone.setModified(true);
         holder.updateCategory(categoryClone);

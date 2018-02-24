@@ -70,7 +70,7 @@ public class GenerateFromRegex extends Function<String> {
     }
 
     /**
-     * Remove no need character '$' at the end
+     * Keep only one '$'at the end and remove other no need character '$'
      * 
      * @param extraParameter
      * @return valid pattern string
@@ -83,9 +83,9 @@ public class GenerateFromRegex extends Function<String> {
     }
 
     /**
-     * Remove specail character from start
+     * Remove special character from start
      * 
-     * @param stream orignal string
+     * @param stream original string
      * @param trim The character which you want to remove
      * @return
      */
@@ -109,9 +109,9 @@ public class GenerateFromRegex extends Function<String> {
     }
 
     /**
-     * Remove specail character from tail
+     * Remove special character from tail
      * 
-     * @param stream orignal string
+     * @param stream original string
      * @param trim The character which you want to remove
      * @return
      */
